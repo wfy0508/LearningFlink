@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration monitorInterval="5">
+    <properties>
+        <property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+        <property name="LOG_LVELE" value="INFO"/>
+    </properties>
+
+    <appenders>
+        <console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <ThresholdFilter level="${LOG_LEVEL}" onMatch="ACCEPT" onMismatch="DENY"/>
+        </console>
+        <file name="log" fileName="tmp/log/job.log" append="false">
+            <PatternLayout pattern="%date{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </file>
+    </appenders>
+    <loggers>
+        <root level="${LOG_LEVEL}">
+            <appender-ref ref="console"/>
+            <appender-ref ref="log"/>
+        </root>
+    </loggers>
+
+</configuration>
